@@ -1,9 +1,9 @@
 # NETFrameworkTool
 
-[![Visual Studio 2022](https://img.shields.io/badge/Visual%20Studio-2022-blue)](../..)
+[![Visual Studio 2022](https://img.shields.io/badge/Visual%20Studio-2022-blue)](https://github.com/ricaun-io/NETFrameworkTool)
 [![Nuke](https://img.shields.io/badge/Nuke-Build-blue)](https://nuke.build/)
 [![License MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Build](../../actions/workflows/Build.yml/badge.svg)](../../actions)
+[![Build](https://github.com/ricaun-io/NETFrameworkTool/actions/workflows/Build.yml/badge.svg)](https://github.com/ricaun-io/NETFrameworkTool/actions)
 [![Release](https://img.shields.io/nuget/v/NETFrameworkTool?logo=nuget&label=release&color=blue)](https://www.nuget.org/packages/NETFrameworkTool)
 
 Tool to install/unistall Microsoft .NET Frameworks references assemblies. 
@@ -81,7 +81,7 @@ steps:
 
 ## Release
 
-* [Latest release](../../releases/latest)
+* [Latest release](https://github.com/ricaun-io/NETFrameworkTool/releases/latest)
 
 ## License
 
@@ -89,4 +89,4 @@ This project is [licensed](LICENSE) under the [MIT License](https://en.wikipedia
 
 ---
 
-Do you like this project? Please [star this project on GitHub](../../stargazers)!
+Do you like this project? Please [star this project on GitHub](https://github.com/ricaun-io/NETFrameworkTool/stargazers)!
