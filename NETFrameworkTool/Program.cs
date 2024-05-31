@@ -16,7 +16,7 @@ namespace NETFrameworkTool
                 if (o.Show)
                     Show();
                 else if (netVersion is null)
-                    DisplayHelp(parser);
+                    Console.WriteLine(DisplayHelp(parser));
 
                 if (netVersion is not null)
                 {
@@ -55,13 +55,10 @@ namespace NETFrameworkTool
             });
         }
 
-        static void DisplayHelp<T>(ParserResult<T> result)
+        static string DisplayHelp<T>(ParserResult<T> result)
         {
-            var helpText = CommandLine.Text.HelpText.AutoBuild(result, h =>
-            {
-                return h;
-            }, e => e);
-            Console.WriteLine(helpText);
+            var helpText = CommandLine.Text.HelpText.AutoBuild(result, h => h, e => e);
+            return helpText.ToString();
         }
 
         static void Install(FrameworkName frameworkName)
