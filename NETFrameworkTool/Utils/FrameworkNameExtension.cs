@@ -10,13 +10,23 @@ namespace NETFrameworkTool.Utils
     public static class FrameworkNameExtension
     {
         /// <summary>
-        /// Installed
+        /// IsInstalled
         /// </summary>
         /// <param name="frameworkName"></param>
         /// <returns></returns>
         public static bool IsInstalled(this FrameworkName frameworkName)
         {
-            return ToolLocationHelper.GetPathToReferenceAssemblies(frameworkName).Any();
+            return NetFrameworkUtils.FrameworkNameInstalled(frameworkName);
+        }
+
+        /// <summary>
+        /// Exists
+        /// </summary>
+        /// <param name="frameworkName"></param>
+        /// <returns></returns>
+        public static bool Exists(this FrameworkName frameworkName)
+        {
+            return NetFrameworkUtils.FrameworkNameExists(frameworkName);
         }
 
         /// <summary>

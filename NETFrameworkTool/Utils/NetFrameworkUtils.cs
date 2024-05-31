@@ -30,6 +30,64 @@ namespace NETFrameworkTool.Utils
             return nugetUrl;
         }
 
+        private const string FrameworkListFileName = "RedistList\\FrameworkList.xml";
+        /// <summary>
+        /// Unnstall
+        /// </summary>
+        /// <param name="frameworkName"></param>
+        public static void Unnstall(FrameworkName frameworkName)
+        {
+            foreach (var path in ToolLocationHelper.GetPathToReferenceAssemblies(frameworkName))
+            {
+                var file = Path.Combine(path, FrameworkListFileName);
+                if (File.Exists(file))
+                {
+                    Console.WriteLine($"{frameworkName.AsString()} Delete: {file}");
+                    try
+                    {
+                        File.Delete(file);
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        Console.WriteLine("Error unauthorized access to delete file, administrator permission required.");
+                        throw;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                        throw;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Install
+        /// </summary>
+        /// <param name="frameworkName"></param>
+        public static void Install(FrameworkName frameworkName)
+        {
+            DownloadTempNugetFrameworkName(frameworkName, (path) =>
+            {
+                var copyToFrameworkDirectory = GetProgramFilesReferenceAssemblyNETFramework();
+                Console.WriteLine($"{frameworkName.AsString()} CopyDirectory: {copyToFrameworkDirectory}");
+                try
+                {
+                    PathTasks.CopyDirectory(Path.Combine(path), copyToFrameworkDirectory);
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    Console.WriteLine("Error unauthorized access to copy files, administrator permission required.");
+                    throw;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                    throw;
+                }
+            });
+        }
+
         /// <summary>
         /// DownloadTempNugetFrameworkName
         /// </summary>
@@ -47,7 +105,7 @@ namespace NETFrameworkTool.Utils
             try
             {
                 var url = GetReferenceAssembliesNugetUrl(netVersion, nugetVersion);
-                Console.WriteLine($"Download: {url}");
+                Console.WriteLine($"{frameworkName.AsString()} Download: {url}");
                 HttpTasks.HttpDownloadFile(url, tempFileName);
 
                 ZipFile.ExtractToDirectory(tempFileName, tempExtractFolder);
@@ -93,6 +151,26 @@ namespace NETFrameworkTool.Utils
             return ToolLocationHelper.GetSupportedTargetFrameworks().Select(e => new FrameworkName(e))
                 .Where(e => e.Identifier == NETFramework)
                 .ToList();
+        }
+
+        /// <summary>
+        /// FrameworkNameInstalled
+        /// </summary>
+        /// <param name="frameworkName"></param>
+        /// <returns></returns>
+        public static bool FrameworkNameInstalled(FrameworkName frameworkName)
+        {
+            return ToolLocationHelper.GetPathToReferenceAssemblies(frameworkName).Any();
+        }
+
+        /// <summary>
+        /// FrameworkNameExists
+        /// </summary>
+        /// <param name="frameworkName"></param>
+        /// <returns></returns>
+        public static bool FrameworkNameExists(FrameworkName frameworkName)
+        {
+            return GetSupportedTargetNetFrameworks().Any(e => e.Equals(frameworkName));
         }
     }
 }

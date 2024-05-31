@@ -14,7 +14,7 @@ namespace NETFrameworkTool
                 .WithParsed<Options>(o =>
                 {
                     if (o.Show)
-                    { 
+                    {
                         Show();
                     }
 
@@ -22,13 +22,32 @@ namespace NETFrameworkTool
                     if (netVersion is not null)
                     {
                         var frameworkName = new FrameworkName(NetFrameworkUtils.NETFramework, netVersion);
+                        if (frameworkName.Exists() == false)
+                        {
+                            Console.WriteLine($"{frameworkName.AsString()} does not exist.");
+                            return;
+                        }
                         if (frameworkName.IsInstalled())
                         {
-                            Console.WriteLine($"{frameworkName.AsString()} is already installed.");
-                            if (o.Force == false) return;
+                            if (o.Unistall)
+                            {
+                                Uninstall(frameworkName);
+                                return;
+                            }
+                            if (o.ForceInstall == false)
+                            {
+                                Console.WriteLine($"{frameworkName.AsString()} is already installed.");
+                                return;
+                            }
                         }
-
-                        Install(frameworkName);
+                        else
+                        {
+                            Console.WriteLine($"{frameworkName.AsString()} is not installed.");
+                        }
+                        if (o.Install)
+                        {
+                            Install(frameworkName);
+                        }
                     }
                 }).WithNotParsed((errors) =>
                 {
@@ -43,29 +62,26 @@ namespace NETFrameworkTool
             Console.WriteLine($"{frameworkName.AsString()} installing.");
             try
             {
-                NetFrameworkUtils.DownloadTempNugetFrameworkName(frameworkName, (path) =>
-                {
-                    var copyToFrameworkDirectory = NetFrameworkUtils.GetProgramFilesReferenceAssemblyNETFramework();
-                    Console.WriteLine($"CopyDirectory to {copyToFrameworkDirectory}");
-                    try
-                    {
-                        PathTasks.CopyDirectory(Path.Combine(path), copyToFrameworkDirectory);
-                    }
-                    catch (UnauthorizedAccessException)
-                    {
-                        Console.WriteLine("Error unauthorized access to copy files, administrator is needed.");
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex);
-                    }
-                });
-
+                NetFrameworkUtils.Install(frameworkName);
                 Console.WriteLine($"{frameworkName.AsString()} installed.");
             }
             catch (Exception)
             {
-                Console.WriteLine($"Not able to download {frameworkName.AsString()}.");
+                Console.WriteLine($"Not able to install {frameworkName.AsString()}.");
+            }
+        }
+
+        static void Uninstall(FrameworkName frameworkName)
+        {
+            Console.WriteLine($"{frameworkName.AsString()} uninstalling.");
+            try
+            {
+                NetFrameworkUtils.Unnstall(frameworkName);
+                Console.WriteLine($"{frameworkName.AsString()} uninstalled.");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"Not able to unistall {frameworkName.AsString()}.");
             }
         }
 

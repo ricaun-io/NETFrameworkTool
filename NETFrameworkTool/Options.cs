@@ -20,9 +20,13 @@ namespace NETFrameworkTool
 
         [Option('n', "net", Required = true, HelpText = ".NET Framework version")]
         public Version NetVersion { get; set; }
-        [Option('f', "force", Required = false, HelpText = "Force to install .NET Framework in Microsoft folder.")]
-        public bool Force { get; set; }
-        [Option('l', "list", Required = false, Hidden = true, HelpText = "Show list of available .NET Framework.")]
+        [Option('i', "install", Required = false, HelpText = "Install .NET Framework.")]
+        public bool Install { get; set; }
+        [Option('u', "unistall", Required = false, HelpText = "Unistall .NET Framework.")]
+        public bool Unistall { get; set; }
+        [Option('f', "force", Required = false, HelpText = "Force to install .NET Framework.")]
+        public bool ForceInstall { get; set; }
+        [Option('l', "list", Required = false, HelpText = "Show list of available .NET Framework.")]
         public bool Show { get; set; }
     }
 }
