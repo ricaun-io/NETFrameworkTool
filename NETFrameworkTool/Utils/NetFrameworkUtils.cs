@@ -6,7 +6,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Runtime.Versioning;
 
-namespace NETFrameworkTool
+namespace NETFrameworkTool.Utils
 {
     /// <summary>
     /// NetFrameworkUtils
@@ -93,16 +93,6 @@ namespace NETFrameworkTool
             return ToolLocationHelper.GetSupportedTargetFrameworks().Select(e => new FrameworkName(e))
                 .Where(e => e.Identifier == NETFramework)
                 .ToList();
-        }
-
-        /// <summary>
-        /// Installed
-        /// </summary>
-        /// <param name="frameworkName"></param>
-        /// <returns></returns>
-        public static bool Installed(this FrameworkName frameworkName)
-        {
-            return ToolLocationHelper.GetPathToReferenceAssemblies(frameworkName).Any();
         }
     }
 }

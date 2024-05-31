@@ -2,12 +2,12 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace NETFrameworkTool
+namespace NETFrameworkTool.Utils
 {
     /// <summary>
     /// HttpTasks
     /// </summary>
-    /// <remarks>https://github.com/nuke-build/nuke/blob/master/source/Nuke.Common/IO/HttpTasks.cs</remarks>
+    /// <remarks>Based: https://github.com/nuke-build/nuke/blob/master/source/Nuke.Common/IO/HttpTasks.cs</remarks>
     public static class HttpTasks
     {
         /// <summary>
