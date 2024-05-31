@@ -32,3 +32,7 @@ jobs:
         run: dotnet tool install --global --add-source ./NETFrameworkTool/bin/Release NETFrameworkTool --version *-*
       - name: NETFrameworkTool
         run: NETFrameworkTool
+      - name: NETFrameworkTool --net 4.0 --install
+        run: NETFrameworkTool --net 4.0 --install
+      - name: NETFrameworkTool
+        run: NETFrameworkTool
