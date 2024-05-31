@@ -1,7 +1,6 @@
 ﻿using CommandLine;
 using NETFrameworkTool.Utils;
 using System;
-using System.IO;
 using System.Runtime.Versioning;
 
 namespace NETFrameworkTool
@@ -10,51 +9,59 @@ namespace NETFrameworkTool
     {
         static void Main(string[] args)
         {
-            Options.Parser.ParseArguments<Options>(args)
-                .WithParsed<Options>(o =>
-                {
-                    if (o.Show)
-                    {
-                        Show();
-                    }
+            var parser = Options.Parser.ParseArguments<Options>(args);
+            parser.WithParsed<Options>(o =>
+            {
+                var netVersion = o.NetVersion;
+                if (o.Show)
+                    Show();
+                else if (netVersion is null)
+                    DisplayHelp(parser);
 
-                    var netVersion = o.NetVersion;
-                    if (netVersion is not null)
+                if (netVersion is not null)
+                {
+                    var frameworkName = new FrameworkName(NetFrameworkUtils.NETFramework, netVersion);
+                    if (frameworkName.Exists() == false)
                     {
-                        var frameworkName = new FrameworkName(NetFrameworkUtils.NETFramework, netVersion);
-                        if (frameworkName.Exists() == false)
+                        Console.WriteLine($"{frameworkName.AsString()} does not exist.");
+                        return;
+                    }
+                    if (frameworkName.IsInstalled())
+                    {
+                        if (o.Unistall)
                         {
-                            Console.WriteLine($"{frameworkName.AsString()} does not exist.");
+                            Uninstall(frameworkName);
                             return;
                         }
-                        if (frameworkName.IsInstalled())
+                        if (o.ForceInstall == false)
                         {
-                            if (o.Unistall)
-                            {
-                                Uninstall(frameworkName);
-                                return;
-                            }
-                            if (o.ForceInstall == false)
-                            {
-                                Console.WriteLine($"{frameworkName.AsString()} is already installed.");
-                                return;
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine($"{frameworkName.AsString()} is not installed.");
-                        }
-                        if (o.Install)
-                        {
-                            Install(frameworkName);
+                            Console.WriteLine($"{frameworkName.AsString()} is already installed.");
+                            return;
                         }
                     }
-                }).WithNotParsed((errors) =>
-                {
-                    Show();
-                    if (errors.IsHelp()) return;
-                    if (errors.IsVersion()) return;
-                });
+                    else
+                    {
+                        Console.WriteLine($"{frameworkName.AsString()} is not installed.");
+                    }
+                    if (o.Install)
+                    {
+                        Install(frameworkName);
+                    }
+                }
+            }).WithNotParsed((errors) =>
+            {
+                if (errors.IsHelp()) return;
+                if (errors.IsVersion()) return;
+            });
+        }
+
+        static void DisplayHelp<T>(ParserResult<T> result)
+        {
+            var helpText = CommandLine.Text.HelpText.AutoBuild(result, h =>
+            {
+                return h;
+            }, e => e);
+            Console.WriteLine(helpText);
         }
 
         static void Install(FrameworkName frameworkName)

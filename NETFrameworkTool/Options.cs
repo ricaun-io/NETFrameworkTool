@@ -18,7 +18,7 @@ namespace NETFrameworkTool
         }
         #endregion
 
-        [Option('n', "net", Required = true, HelpText = ".NET Framework version")]
+        [Option('n', "net", Required = false, HelpText = ".NET Framework version")]
         public Version NetVersion { get; set; }
         [Option('i', "install", Required = false, HelpText = "Install .NET Framework.")]
         public bool Install { get; set; }

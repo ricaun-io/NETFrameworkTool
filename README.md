@@ -15,13 +15,11 @@ dotnet tool install --global NETFrameworkTool
 ```
 
 ## Tool Commands
-
-### Show/List
-Execute the `NETFrameworkTool` to show the .NET Framework versions installed and available.
+### List
+The command `-l` or `--list` is used to show the .NET Framework versions installed and available.
 ```bash
-NETFrameworkTool
+NETFrameworkTool --list
 ```
-
 Example output:
 ```
 NETFrameworkTool available:
@@ -35,7 +33,6 @@ NETFrameworkTool available:
   .NETFramework 4.7.2   Installed
   .NETFramework 4.8     Installed
 ```
-
 ### Net
 The command `-n` or `--net` is used to specify the .NET Framework version to install/unistall.
 ```bash
