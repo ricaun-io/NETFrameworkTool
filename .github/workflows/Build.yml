@@ -24,3 +24,7 @@ jobs:
           GitHubToken: ${{ secrets.GITHUB_TOKEN }}
           SignFile: ${{ secrets.SIGN_FILE }}
           SignPassword: ${{ secrets.SIGN_PASSWORD }}
+
+      - uses: actions/checkout@v1
+      - name: dotnet tool install
+        run: dotnet tool install --global --add-source NETFrameworkTool/bin/Release NETFrameworkTool --version *-*
