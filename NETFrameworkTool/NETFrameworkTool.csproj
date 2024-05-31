@@ -31,7 +31,7 @@
 
   <PropertyGroup>
     <PackageId>NETFrameworkTool</PackageId>
-    <Version>1.0.0-rc</Version>
+    <Version>1.0.0-rc.1</Version>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -53,6 +53,7 @@
     <PackageProjectUrl>https://github.com/$(GitHubRepositoryOwner)/$(PackageId)</PackageProjectUrl>
     <RepositoryUrl>https://github.com/$(GitHubRepositoryOwner)/$(PackageId)</RepositoryUrl>
     <RepositoryType>github</RepositoryType>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
@@ -65,8 +66,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\README.md" Pack="true" PackagePath="\" Visible="false" />
-    <None Include="..\LICENSE" Pack="true" PackagePath="\" Visible="false" />
+    <None Include="..\README.md" Pack="true" PackagePath="" Visible="false" />
+    <None Include="..\LICENSE" Pack="true" PackagePath="" Visible="false" />
+    <None Include=".\icon.png" Pack="true" PackagePath="" Visible="false" />
   </ItemGroup>
 
   <ItemGroup>
