@@ -25,6 +25,8 @@ jobs:
           SignFile: ${{ secrets.SIGN_FILE }}
           SignPassword: ${{ secrets.SIGN_PASSWORD }}
 
-      - uses: actions/checkout@v1
+      - uses: actions/setup-dotnet@v4
+        with:
+            dotnet-version: 8.x
       - name: dotnet tool install
-        run: dotnet tool install --global --add-source NETFrameworkTool/bin/Release NETFrameworkTool --version *-*
+        run: dotnet tool install --global --add-source ./NETFrameworkTool/bin/Release NETFrameworkTool --version *-*
