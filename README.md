@@ -59,6 +59,18 @@ The command `-help` is used to show the help.
 NETFrameworkTool --help
 ```
 
+### Github Actions
+To use the `NETFrameworkTool` in a GitHub Actions workflow, you can use the following example with [setup-dotnet](https://github.com/actions/setup-dotnet):
+```yaml
+steps:
+- uses: actions/checkout@v4
+- uses: actions/setup-dotnet@v4
+  with:
+    dotnet-version: '8.x'
+- run: dotnet tool install --global NETFrameworkTool
+- run: NETFrameworkTool --net 4.0 --install
+```
+
 ## Release
 
 * [Latest release](../../releases/latest)

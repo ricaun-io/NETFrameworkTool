@@ -28,11 +28,7 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
             dotnet-version: 8.x
-      - name: dotnet tool install
-        run: dotnet tool install --global --add-source ./NETFrameworkTool/bin/Release NETFrameworkTool --version *-*
-      - name: NETFrameworkTool --list
-        run: NETFrameworkTool --list
-      - name: NETFrameworkTool --net 4.0 --install
-        run: NETFrameworkTool --net 4.0 --install
-      - name: NETFrameworkTool --list
-        run: NETFrameworkTool --list
+      - run: dotnet tool install --global --add-source ./NETFrameworkTool/bin/Release NETFrameworkTool --version *-*
+      - run: NETFrameworkTool --list
+      - run: NETFrameworkTool --net 4.0 --install
+      - run: NETFrameworkTool --list
