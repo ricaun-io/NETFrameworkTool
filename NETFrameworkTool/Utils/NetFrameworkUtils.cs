@@ -30,6 +30,12 @@ namespace NETFrameworkTool.Utils
             return nugetUrl;
         }
 
+        /// <summary>
+        /// FrameworkListFileName
+        /// </summary>
+        /// <remarks>
+        /// https://github.com/NuGet/NuGet2/blob/2.14/src/VisualStudio/FrameworkAssemblyResolver.cs
+        /// </remarks>
         private const string FrameworkListFileName = "RedistList\\FrameworkList.xml";
         /// <summary>
         /// Unnstall
