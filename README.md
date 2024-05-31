@@ -60,7 +60,13 @@ NETFrameworkTool --help
 ```
 
 ### Github Actions
+
+The `windows-2022` does not have the .NET Framework 4.0 and 4.5 installed by default. 
+
+You can use the `NETFrameworkTool` to install the .NET Framework 4.0 and 4.5.
+
 To use the `NETFrameworkTool` in a GitHub Actions workflow, you can use the following example with [setup-dotnet](https://github.com/actions/setup-dotnet):
+
 ```yaml
 steps:
 - uses: actions/checkout@v4
@@ -69,6 +75,7 @@ steps:
     dotnet-version: '8.x'
 - run: dotnet tool install --global NETFrameworkTool
 - run: NETFrameworkTool --net 4.0 --install
+- run: NETFrameworkTool --net 4.5 --install
 ```
 
 ## Release
