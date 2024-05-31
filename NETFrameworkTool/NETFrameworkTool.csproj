@@ -31,7 +31,7 @@
 
   <PropertyGroup>
     <PackageId>NETFrameworkTool</PackageId>
-    <Version>1.0.0-alpha</Version>
+    <Version>1.0.0-beta</Version>
   </PropertyGroup>
 
   <PropertyGroup>

@@ -5,46 +5,61 @@
 [![License MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Build](../../actions/workflows/Build.yml/badge.svg)](../../actions)
 
-## Create a tool
+Tool to install/unistall Microsoft .NET Frameworks references assemblies. 
 
-This project is a sample based in the [Tutorial: Create a .NET tool using the .NET CLI](https://learn.microsoft.com/en-us/dotnet/core/tools/global-tools-how-to-create).
+The references assemblies are downloaded from the Nuget package [Microsoft.NETFramework.ReferenceAssemblies](https://www.nuget.org/packages?q=Microsoft.NETFramework.ReferenceAssemblies) and copy to the Reference Assemblies Microsoft folder.
 
-### Info Global Tool
-
+## Install Tool
 ```bash
-dotnet tool list --global
+dotnet tool install --global NETFrameworkTool
 ```
 
-or 
+## Tool Commands
 
-```bash
-dotnet tool list -g
-```
-
-### Install Global Tool
-
-```bash
-dotnet tool install --global --add-source ./bin/Release NETFrameworkTool --version *-*
-```
-
-or
-
-```bash
-dotnet tool install --global NETFrameworkTool --version *-*
-```
-
-### Uninstall Global Tool
-```bash
-dotnet tool uninstall --global NETFrameworkTool
-```
-
-## Execute Tool
+### Show/List
+Execute the `NETFrameworkTool` to show the .NET Framework versions installed and available.
 ```bash
 NETFrameworkTool
 ```
-or
+
+Example output:
+```
+NETFrameworkTool available:
+  .NETFramework 4.0     Installed
+  .NETFramework 4.5     Installed
+  .NETFramework 4.5.1
+  .NETFramework 4.5.2
+  .NETFramework 4.6     Installed
+  .NETFramework 4.6.1
+  .NETFramework 4.7     Installed
+  .NETFramework 4.7.2   Installed
+  .NETFramework 4.8     Installed
+```
+
+### Net
+The command `-n` or `--net` is used to specify the .NET Framework version to install/unistall.
 ```bash
-NETFrameworkTool -n 4.0
+NETFrameworkTool --net 4.0
+```
+### Install
+The command `-i` or `--install` is used to install the .NET Framework version. *(Administrator Permission Required)*
+```bash
+NETFrameworkTool --net 4.0 --install
+```
+### Uninstall
+The command `-u` or `--uninstall` is used to uninstall the .NET Framework version. *(Administrator Permission Required)*
+```bash
+NETFrameworkTool --net 4.0 --uninstall
+```
+### Force Reinstall
+The command `-f` or `--force` is used to force to reinstall the .NET Framework version. *(Administrator Permission Required)*
+```bash
+NETFrameworkTool --net 4.0 --install --force
+```
+### Help
+The command `-help` is used to show the help.
+```bash
+NETFrameworkTool --help
 ```
 
 ## Release
