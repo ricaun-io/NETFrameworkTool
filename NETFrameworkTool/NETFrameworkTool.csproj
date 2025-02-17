@@ -31,13 +31,12 @@
 
   <PropertyGroup>
     <PackageId>NETFrameworkTool</PackageId>
-    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <PropertyGroup>
     <Company>ricaun</Company>
     <Authors>Luiz Henrique Cassettari</Authors>
-    <Description>Tool to install/unistall Microsoft .NET Frameworks references assemblies.</Description>
+    <Description>Tool to install/uninstall Microsoft .NET Frameworks references assemblies.</Description>
     <PackageTags>dotnetframework;tools</PackageTags>
     <CopyrightYears>$([System.DateTime]::Now.ToString('yyyy'))</CopyrightYears>
   </PropertyGroup>

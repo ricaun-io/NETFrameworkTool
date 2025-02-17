@@ -22,8 +22,8 @@ namespace NETFrameworkTool
         public Version NetVersion { get; set; }
         [Option('i', "install", Required = false, HelpText = "Install .NET Framework.")]
         public bool Install { get; set; }
-        [Option('u', "unistall", Required = false, HelpText = "Unistall .NET Framework.")]
-        public bool Unistall { get; set; }
+        [Option('u', "uninstall", Required = false, HelpText = "Uninstall .NET Framework.")]
+        public bool Uninstall { get; set; }
         [Option('f', "force", Required = false, HelpText = "Force to install .NET Framework.")]
         public bool ForceInstall { get; set; }
         [Option('l', "list", Required = false, HelpText = "Show list of available .NET Framework.")]
