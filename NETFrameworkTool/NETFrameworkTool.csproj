@@ -25,7 +25,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <NetFrameworkToolName>NETFrameworkTool</NetFrameworkToolName>
+    <ToolCommandName>NETFrameworkTool</ToolCommandName>
     <PackAsTool>true</PackAsTool>
   </PropertyGroup>
 
