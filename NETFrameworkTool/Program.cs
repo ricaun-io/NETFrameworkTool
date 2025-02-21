@@ -24,6 +24,10 @@ namespace NETFrameworkTool
                     if (frameworkName.Exists() == false)
                     {
                         Console.WriteLine($"{frameworkName.AsString()} does not exist.");
+                        if (o.Install && o.ForceInstall)
+                        {
+                            Install(frameworkName);
+                        }
                         return;
                     }
                     if (frameworkName.IsInstalled())
