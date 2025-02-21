@@ -24,11 +24,15 @@ namespace NETFrameworkTool
                     if (frameworkName.Exists() == false)
                     {
                         Console.WriteLine($"{frameworkName.AsString()} does not exist.");
+                        if (o.Install && o.ForceInstall)
+                        {
+                            Install(frameworkName);
+                        }
                         return;
                     }
                     if (frameworkName.IsInstalled())
                     {
-                        if (o.Unistall)
+                        if (o.Uninstall)
                         {
                             Uninstall(frameworkName);
                             return;
@@ -85,7 +89,7 @@ namespace NETFrameworkTool
             }
             catch (Exception)
             {
-                Console.WriteLine($"Not able to unistall {frameworkName.AsString()}.");
+                Console.WriteLine($"Not able to uninstall {frameworkName.AsString()}.");
             }
         }
 

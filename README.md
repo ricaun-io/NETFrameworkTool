@@ -6,9 +6,9 @@
 [![Build](https://github.com/ricaun-io/NETFrameworkTool/actions/workflows/Build.yml/badge.svg)](https://github.com/ricaun-io/NETFrameworkTool/actions)
 [![Release](https://img.shields.io/nuget/v/NETFrameworkTool?logo=nuget&label=release&color=blue)](https://www.nuget.org/packages/NETFrameworkTool)
 
-Tool to install/unistall Microsoft .NET Frameworks references assemblies. 
+Tool to install/uninstall Microsoft .NET Frameworks references assemblies. 
 
-The references assemblies are downloaded from the Nuget package [Microsoft.NETFramework.ReferenceAssemblies](https://www.nuget.org/packages?q=Microsoft.NETFramework.ReferenceAssemblies) and copy to the Reference Assemblies Microsoft folder.
+The references assemblies are downloaded from the NuGet package [Microsoft.NETFramework.ReferenceAssemblies](https://www.nuget.org/packages?q=Microsoft.NETFramework.ReferenceAssemblies) and copy to the Reference Assemblies Microsoft folder.
 
 ## Install Tool
 ```bash
@@ -35,7 +35,7 @@ NETFrameworkTool available:
   .NETFramework 4.8     Installed
 ```
 ### Net
-The command `-n` or `--net` is used to specify the .NET Framework version to install/unistall.
+The command `-n` or `--net` is used to specify the .NET Framework version to install/uninstall.
 ```bash
 NETFrameworkTool --net 4.0
 ```
